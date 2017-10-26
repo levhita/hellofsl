@@ -1,4 +1,5 @@
 import tweepy
+import ConfigParser
 from pprint import pprint
 import requests.packages.urllib3
 
@@ -22,8 +23,13 @@ lyrics = [line.rstrip('\n') for line in open("despacito.txt")]
 length = len(lyrics)
 counter = 0
 
-auth = tweepy.OAuthHandler("s1HpYlsrGRldf5fJoqYw2KWTT", "NPs562OojeHXHmlDGK1FXCemrrYGnKe2WIJ8yk4eiZYaVnoJ9A")
-auth.set_access_token("20459504-JsDzcDlUc0mLVLdQCqjYJEXI1RESZ1RuIYRHoy2Ni", "oZGCKJHe6IKgEPkmxdv5d2YbYkiGIe5akwtLTiYGGSbzm")
+api_key         = Config.get("twitter", "api_key")
+api_secret      = Config.get("twitter", "api_secret")
+access_token    = Config.get("twitter", "access_token")
+access_token_secret   = Config.get("twitter", "access_token_secret")
+
+auth = tweepy.OAuthHandler(api_key , api_secret )
+auth.set_access_token(access_token, access_token_secret)
 
 api = tweepy.API(auth)
     

@@ -1,7 +1,7 @@
 import tweepy
+import ConfigParser
 from pprint import pprint
 import requests.packages.urllib3
-import ConfigParser
 import sys
 #import time
 
@@ -25,10 +25,6 @@ if __name__ == '__main__':
     Config.read("config.ini")
     requests.packages.urllib3.disable_warnings()
     
-    api_key         = Config.get("twitter", "api_key")
-    api_secret      = Config.get("twitter", "api_secret")
-    access_token    = Config.get("twitter", "access_token")
-    access_token_secret   = Config.get("twitter", "access_token_secret")
     say_hello_to    = sys.argv[1]
     songfile        = sys.argv[2]
     
@@ -36,8 +32,13 @@ if __name__ == '__main__':
     length = len(lyrics)
     counter = 0
 
+    api_key         = Config.get("twitter", "api_key")
+    api_secret      = Config.get("twitter", "api_secret")
+    access_token    = Config.get("twitter", "access_token")
+    access_token_secret   = Config.get("twitter", "access_token_secret")
+
     auth = tweepy.OAuthHandler(api_key , api_secret )
-    auth.set_access_token(access_token, access_token_secret )
+    auth.set_access_token(access_token, access_token_secret)
 
     api = tweepy.API(auth)
         
